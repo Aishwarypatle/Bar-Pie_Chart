@@ -4,8 +4,15 @@ import Avatar from "@mui/material/Avatar";
 
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
+import {
+ 
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 export default function Header() {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -17,8 +24,8 @@ export default function Header() {
   };
 
   return (
-    <div className="static shadow-lg w-full">
-      <div className="flex w-full justify-end items-center py-2 px-4  z-999 h-[50px] ">
+    <div className={ `fixed top-0 right-0 z-50 bg-gray-100 w-10/12 shadow-lg`}>
+      <div className=" flex w-full justify-end items-center py-2 px-4  z-999 h-[50px] ">
         <div>
           <Avatar
             alt="Remy Sharp"

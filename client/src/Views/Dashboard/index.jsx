@@ -5,16 +5,15 @@ import Dashboard from "./Components/Dashboard";
 import Profile from "./Components/Profile";
 
 const MainDash = () => {
-    const location = useLocation();
+  const location = useLocation();
   const isDashboard = location.pathname === "/dashboard";
   return (
-    <div className='width-full'>
-      <Header />
-
+    <div className="flex justify-between flex-col gap-12">
       <div>
-        {isDashboard ? <Dashboard /> : <Profile />}
+        <Header />
       </div>
 
+      <div className='mt-5'>{isDashboard ? <Dashboard /> : <Profile />}</div>
     </div>
   );
 };
