@@ -1,21 +1,4 @@
 #root {
-  max-width: 1280px;
-
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background-color: #dceccf;
-}
-
-
-.main{
-  display: grid;
-  justify-content: center;
-}
-.main h1{
-  width:200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: white;
-
+  margin: 0;
+  padding: 0;
 }
