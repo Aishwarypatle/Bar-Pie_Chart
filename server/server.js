@@ -9,6 +9,7 @@ const axios = require('axios');
 const Product = require('./models/schema');
 const seedData = require('./services/seeder');
 const indexRouter = require('./routes/index');
+// const statisticsRouter = require('./routes/statistics');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -34,6 +35,7 @@ app.use(express.json());
 // app.use('/initialize_database', initializeDatabaseRoute);
 // app.use('/api/products', productRoutes);
 // app.use('/api/transactions', transactionRoutes);
+// app.use('/', statisticsRouter);
 app.use('/', indexRouter);
 
 
