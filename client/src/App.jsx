@@ -1,4 +1,4 @@
-import "./App.css";
+import './App.css'
 
 import { BrowserRouter as Router, Route,Routes , NavLink } from 'react-router-dom';
 import MainComp from "./Views";
@@ -7,17 +7,12 @@ import Profile from "./Views/Dashboard/Components/Profile";
 
 
 function App() {
+
   return (
-    <div>
-      {/* <NavBar />
-      <DashboardApp /> */}
-      <MainComp/>
-      <Routes>
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/account" component={Profile} />
-      </Routes>
-    </div>
-  );
+    <>
+      <h1>  hello</h1>
+    </>
+  )
 }
 
-export default App;
+export default App
