@@ -1,12 +1,17 @@
 import './App.css'
+<<<<<<< HEAD
 import TableChart from './components/TableChart'
 import TickPlacementBars from './components/TickPlacementBars'
+=======
+import './index.css'
+>>>>>>> main
 
 
 function App() {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="main">
         <div className="circle">
           <h1> Transaction Dashboard</h1>
@@ -37,6 +42,9 @@ function App() {
         <TableChart />
         <TickPlacementBars />
       </div>
+=======
+      <h1 className='text-teal-900'>  hello</h1>
+>>>>>>> main
     </>
   )
 }
