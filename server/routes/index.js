@@ -5,6 +5,7 @@ const router = express.Router();
 const DataController = require('../Controllers/DataController');
 const StatisticsController = require('../Controllers/statisticsController');
 const BarChartController = require('../Controllers/BarChartController');
+const pieChartController = require('../Controllers/pieChartController');
 
 
 // GET all users
@@ -14,6 +15,7 @@ router.get('/products', DataController.getAllProducts);
 router.get('/statistics', StatisticsController.getStatisticsData);
 
 router.get('/barchart', BarChartController.getBarChartData);
+router.get('/piechart', pieChartController.getPieChartData);
 
 
 
