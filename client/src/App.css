@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 .main {
@@ -15,7 +17,7 @@
   display: grid;
   align-items: center;
   background-color: white;
-  margin-left: 140px;
+  margin-left: 420px;
   justify-content: center;
   text-align: center;
   margin-top: 70px;
@@ -27,10 +29,11 @@
 .search-panel {
   display: flex;
   gap: 100px;
+  margin-left: 200px;
 }
 
 .search-bar {
-  width: 50%; /* Adjust the width of the search bar */
+  width: 30%; /* Adjust the width of the search bar */
   padding: 8px; /* Add padding for better appearance */
   margin-top: 20px; /* Adjust margin top as needed */
   border: 1px solid #888; /* Add border for better visibility */
@@ -41,7 +44,7 @@
 
 .month {
   background-color: #fdce82;
-  width: 50%; /* Adjust the width of the search bar */
+  width: 30%; /* Adjust the width of the search bar */
   padding: 8px; /* Add padding for better appearance */
   margin-top: 20px; /* Adjust margin top as needed */
   border: 1px solid #888; /* Add border for better visibility */
@@ -50,8 +53,3 @@
   background-color: #fdce82;
 }
 
-=======
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
->>>>>>> main

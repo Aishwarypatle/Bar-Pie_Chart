@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const cors = require('cors');
+
 
 // const initializeDatabaseRoute = require('./routes/initializeDatabaseRoute');
 // const productRoutes = require('./routes/productRoutes');
@@ -13,9 +15,9 @@ const indexRouter = require('./routes/index');
 
 // Load environment variables from .env file
 dotenv.config();
-
 // Create Express app
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -15,8 +15,14 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import axios from 'axios';
+import { useState } from "react";
 
 function TablePaginationActions(props) {
+
+  
+  // console.log(" upated ata - --", tableData);
+  
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -85,140 +91,36 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(id, title, description, price, category, sold, image) {
-  return { id, title, description, price, category, sold, image };
-}
 
-const rows = [
-  createData(
-    1,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    2,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    3,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    4,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    5,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    6,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    7,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    8,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    9,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    10,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-  createData(
-    11,
-    "Cupcake",
-    "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
-    "men's clothing",
-    "yes",
-    305,
-    3.7,
-    90
-  ),
-].sort((a, b) => (a.sold < b.sold ? -1 : 1));
+export default function TableChart(props) {
+  console.log(" props -- " , props);
 
-export default function TableChart() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
+  page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  function createData(id, title, description, price, category, sold, image) {
+    return { id, title, description, price, category, sold, image };
+  }
 
+  
+  const rows = props.tableData.map(({ id, title, description, category, price, sold , image }) =>
+  createData(id, title, description, category, price, sold , image)
+).sort((a, b) => (a.sold < b.sold ? -1 : 1));
+    
+  
+    // console.log(" rows =--" , rows);
   return (
     <TableContainer
       sx={{ marginTop: "100px", borderRadius: "20px" }}
@@ -247,7 +149,7 @@ export default function TableChart() {
               <TableCell style={{ width: 10, paddingLeft: 20 }} align="right">
                 {row.title}
               </TableCell>
-              <TableCell style={{ width: 500 }} align="right">
+              <TableCell style={{ width: 300 }} align="right">
                 {row.description}
               </TableCell>
               <TableCell style={{ width: 120 }} align="right">
@@ -257,7 +159,10 @@ export default function TableChart() {
                 {row.category}
               </TableCell>
               <TableCell style={{ width: 120 }} align="right">
-                {row.sold}
+                {row.sold ? "sold" : 'unsold' }
+              </TableCell>
+              <TableCell style={{ width: 100 }} align="right">
+                {row.image}
               </TableCell>
             </TableRow>
           ))}

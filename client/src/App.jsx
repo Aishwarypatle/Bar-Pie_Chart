@@ -1,17 +1,29 @@
+import { useEffect, useState } from 'react'
 import './App.css'
-<<<<<<< HEAD
 import TableChart from './components/TableChart'
 import TickPlacementBars from './components/TickPlacementBars'
-=======
 import './index.css'
->>>>>>> main
+import axios from 'axios'
+import Statistics from './components/Statistics'
 
 
 function App() {
+  const [ tableData , setTableData ] = useState([])
+  
+  useEffect(()=>{
+    // console.log(" useEffect started ---");
+    
+    axios.get(`http://localhost:3000/products`)
+    .then(res=>{
+      const data = res.data ;
+      // console.log(" line res- --", data);
+      setTableData(data);
+    })
+  },[])
+
 
   return (
     <>
-<<<<<<< HEAD
       <div className="main">
         <div className="circle">
           <h1> Transaction Dashboard</h1>
@@ -39,12 +51,10 @@ function App() {
             <option>Dec</option>
           </select>
         </div>
-        <TableChart />
-        <TickPlacementBars />
+        <TableChart tableData={tableData}/>
+        <Statistics />
+        {/* <TickPlacementBars /> */}
       </div>
-=======
-      <h1 className='text-teal-900'>  hello</h1>
->>>>>>> main
     </>
   )
 }
