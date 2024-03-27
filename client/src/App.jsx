@@ -54,12 +54,13 @@ function App() {
   const [ statisticsData , setStatisticsData ] = useState([])
   const [ barChartData , setBarChartData ] = useState(dataset)
   const [ month , setMonth ] = useState(3);
+  const [ Search , setSearch ] = useState("");
   const [ monthValue , setMonthValue ] = useState("March");
   
   useEffect(()=>{
     // console.log(" useEffect started ---");
     
-    axios.get(`http://localhost:3000/products?month=${month}`)
+    axios.get(`http://localhost:3000/products` , { params : { month , Search}})
     .then(res=>{
       const data = res.data ;
       // console.log(" line res- --", data);
@@ -77,7 +78,7 @@ function App() {
       // console.log(" line res- --", data);
       setBarChartData(data);
     })
-  },[month])
+  },[month , Search])
 
   console.log(" bar chart data --" , barChartData)
 
@@ -98,6 +99,7 @@ function App() {
             type="text"
             placeholder="Search transaction"
             className="search-bar"
+            onChange={(event)=> setSearch(event.target.value)}
           />
           <select 
             className="month h-fit" 
@@ -120,8 +122,8 @@ function App() {
           </select>
         </div>
         <TableChart tableData={tableData}/>
-        <Statistics month={monthValue} data={statisticsData}/>
-        <TickPlacementBars month={monthValue} dataset={barChartData}/>
+        {/* <Statistics month={monthValue} data={statisticsData}/>
+        <TickPlacementBars month={monthValue} dataset={barChartData}/> */}
       </div>
     </>
   )

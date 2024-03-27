@@ -21,7 +21,7 @@ import { useState } from "react";
 function TablePaginationActions(props) {
 
   
-  // console.log(" upated ata - --", tableData);
+  console.log(" line 24 --", props);
   
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -35,7 +35,8 @@ function TablePaginationActions(props) {
   };
 
   const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
+    console.log(" page  ---" , page);
+    onPageChange( page + 1);
   };
 
   const handleLastPageButtonClick = (event) => {
@@ -99,10 +100,14 @@ export default function TableChart(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   
   // Avoid a layout jump when reaching the last page with empty rows.
+  const rows = props.tableData.map(({ id, title, description, category, price, sold , image }) =>
+  createData(id, title, description, category, price, sold , image)
+)
   const emptyRows =
   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
   
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = ( newPage) => {
+    console.log("line 106 --" , newPage);
     setPage(newPage);
   };
   
@@ -110,14 +115,11 @@ export default function TableChart(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  function createData(id, title, description, price, category, sold, image) {
-    return { id, title, description, price, category, sold, image };
+  function createData(id, title, description,  category ,price, sold, image) {
+    return { id, title, description,  category,price, sold, image };
   }
 
   
-  const rows = props.tableData.map(({ id, title, description, category, price, sold , image }) =>
-  createData(id, title, description, category, price, sold , image)
-).sort((a, b) => (a.sold < b.sold ? -1 : 1));
     
   
     // console.log(" rows =--" , rows);
@@ -127,12 +129,12 @@ export default function TableChart(props) {
       component={Paper}
     >
       <h1 style={{ margin: "20px", fontWeight: "bold"  }}>
-        <span style={{ margin: "10px" }}>Id</span>
-        <span style={{ margin: "10px" }}>Title</span>
-        <span style={{ margin: "250px" }}>Description</span>
+        <span style={{ margin: "0px" }}>Id</span>
+        <span style={{ margin: "80px" }}>Title</span>
+        <span style={{ margin: "100px" }}>Description</span>
+        <span style={{ margin: "40px" }}>Category</span>
         <span style={{ margin: "20px" }}>Price</span>
-        <span style={{ marginL: "30px" }}>Category</span>
-        <span style={{ marginRight: "20px" }}>Sold</span>
+        <span style={{ margin: "60px" ,textAlign:"center"}}>Sold</span>
         <span>Image</span>
       </h1>
 

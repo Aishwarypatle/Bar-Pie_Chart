@@ -96,7 +96,7 @@ export default function TickPlacementBars(props) {
   const dataset = props.dataset ;
 
   
-  console.log(" dataset ---" , dataset);
+  // console.log(" dataset ---" , dataset);
 
   const valueFormatter = (value) => `${value}`;
   
